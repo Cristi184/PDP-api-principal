@@ -1,10 +1,10 @@
 import express from "express"
 import dotenv from "dotenv"
 import mongoose from "mongoose"
-import authRoute from '../routes/auth.js'
-import sectionsRoute from '../routes/sections.js'
+import authRoute from './routes/auth.js'
+import sectionsRoute from './routes/sections.js'
 import cookieParser from 'cookie-parser'
-import userRoute from '../routes/user.js'
+import userRoute from './routes/user.js'
 import cors from 'cors'
 const PORT = process.env.PORT || 8800;
 
