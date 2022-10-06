@@ -3,11 +3,12 @@ import {
     createSection,
     deleteSection,
     getSection,
-    getSectionByName,
-    getSections, getSectionsByLanguage,
+    getSectionByNameByLanguage,
+    getSections,
+    getSectionsByLanguage,
     updateSection
 } from "../controllers/sections.js";
-import {verifyAdmin, verifyToken} from "../utils/verifyToken.js";
+import {verifyToken} from "../utils/verifyToken.js";
 
 const router = express.Router();
 
@@ -26,9 +27,8 @@ router.get("/find/:id", getSection)
 //Get All
 router.get("/", getSections)
 
-router.get("/sectionLanguage", getSectionsByLanguage)
+router.get("/sectionByLanguage", getSectionsByLanguage)
 
-
-router.get("/getBySectionName", getSectionByName)
+router.get("/getSectionByNameByLanguage", getSectionByNameByLanguage)
 
 export default router

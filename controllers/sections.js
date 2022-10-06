@@ -38,13 +38,18 @@ export const getSection = async (req, res, next) => {
     }
 }
 
-export const getSectionByName = async (req, res, next) => {
+export const getSectionByNameByLanguage = async (req, res, next) => {
     const name = req.query.name
     const lang = req.query.language
+    let getSection
     try {
-        const getSection = await Sections.find({sectionName: name,language: lang})
+        if (name) {
+            getSection = await Sections.find({sectionName: name})
+        } else
+            getSection = await Sections.find({sectionName: name, language: lang})
         res.status(200).json(getSection)
-    } catch (err) {
+    } catch
+        (err) {
         next(err)
     }
 }
