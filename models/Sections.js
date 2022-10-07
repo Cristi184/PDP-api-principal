@@ -7,12 +7,10 @@ const SectionsSchema = new mongoose.Schema({
     },
     sectionName: {
         type: String,
-        required: true,
-        unique: true
+        required: false,
     },
     title: {
         type: String,
-        required: true
     },
     subTitle: {
         type: [String],
