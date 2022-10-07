@@ -19,7 +19,7 @@ router.post("/", verifyToken, createSection)
 router.put("/:id", verifyToken, updateSection)
 
 //Delete
-router.delete("/find/:id", verifyToken, deleteSection)
+router.delete("/:id", verifyToken, deleteSection)
 
 //Get
 router.get("/find/:id", getSection)

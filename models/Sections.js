@@ -16,7 +16,7 @@ const SectionsSchema = new mongoose.Schema({
         type: [String],
     },
     content: {
-        type: [String],
+        type: [],
     },
     video: {
         type: [String],
