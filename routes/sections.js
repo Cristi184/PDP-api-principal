@@ -16,7 +16,7 @@ const router = express.Router();
 router.post("/", verifyToken, createSection)
 
 //Update
-router.put("/:id",verifyToken, updateSection)
+router.put("/:id", updateSection)
 
 //Delete
 router.delete("/:id", verifyToken, deleteSection)
