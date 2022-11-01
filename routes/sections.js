@@ -16,16 +16,16 @@ const router = express.Router();
 router.post("/", verifyToken, createSection)
 
 //Update
-router.put("/:id", updateSection)
+router.put("/:id", verifyToken, updateSection)
 
 //Delete
 router.delete("/:id", verifyToken, deleteSection)
 
 //Get
-router.get("/find/:id", getSection)
+router.get("/find/:id",verifyToken, getSection)
 
 //Get All
-router.get("/", getSections)
+router.get("/", verifyToken,getSections)
 
 router.get("/sectionByLanguage", getSectionsByLanguage)
 
