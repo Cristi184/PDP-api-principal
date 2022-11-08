@@ -6,6 +6,8 @@ import sectionsRoute from './routes/sections.js'
 import cookieParser from 'cookie-parser'
 import userRoute from './routes/user.js'
 import cors from 'cors'
+import * as path from "path";
+
 const PORT = process.env.PORT || 8800;
 
 const app = express()
@@ -32,6 +34,10 @@ app.use(express.json({limit: '50mb'}))
 app.use("/api/auth", authRoute)
 app.use("/api/sections", sectionsRoute)
 app.use("/api/user", userRoute)
+app.use(express.static(path.join(__dirname, 'build')))
+app.get('/*', function (req, res) {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'))
+})
 
 app.use((err, req, res, next) => {
     const errorStatus = err.status || 500
