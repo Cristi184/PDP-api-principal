@@ -1,12 +1,12 @@
-import express from "express"
-import dotenv from "dotenv"
-import mongoose from "mongoose"
-import authRoute from './routes/auth.js'
-import sectionsRoute from './routes/sections.js'
-import cookieParser from 'cookie-parser'
-import userRoute from './routes/user.js'
-import cors from 'cors'
-import * as path from "path";
+const express = require("express")
+const dotenv = require("dotenv")
+const authRoute = require('./routes/auth.js')
+const sectionsRoute = require('./routes/sections.js')
+const cookieParser = require('cookie-parser')
+const userRoute = require('./routes/user.js')
+const cors = require('cors')
+const path = require("path");
+const mongoose = require("mongoose");
 
 const PORT = process.env.PORT || 8800;
 

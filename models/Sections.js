@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 const SectionsSchema = new mongoose.Schema({
     language: {
@@ -29,4 +29,4 @@ const SectionsSchema = new mongoose.Schema({
     },
 });
 
-export default mongoose.model("Section", SectionsSchema)
+module.exports = {SectionsSchema:mongoose.model("Section", SectionsSchema)}

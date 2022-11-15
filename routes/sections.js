@@ -1,5 +1,5 @@
-import express from "express";
-import {
+const express = require("express");
+const {
     createSection,
     deleteSection,
     getSection,
@@ -7,8 +7,8 @@ import {
     getSections,
     getSectionsByLanguage,
     updateSection
-} from "../controllers/sections.js";
-import {verifyToken} from "../utils/verifyToken.js";
+} = require("../controllers/sections.js");
+const {verifyToken} = require("../utils/verifyToken.js");
 
 const router = express.Router();
 
@@ -31,4 +31,5 @@ router.get("/sectionByLanguage", getSectionsByLanguage)
 
 router.get("/getSectionByNameByLanguage", getSectionByNameByLanguage)
 
-export default router
+
+module.exports = router

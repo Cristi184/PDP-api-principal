@@ -1,14 +1,15 @@
-import User from "../models/User.js";
-import bcrypt from "bcrypt";
-import {createError} from "../utils/error.js";
-import jwt from 'jsonwebtoken'
-import Sections from "../models/Sections.js";
+const User = require("../models/User.js");
+const bcrypt = ("bcrypt");
+const {createError} = require("../utils/error.js");
+const jwt = require('jsonwebtoken');
+const Sections = require("../models/Sections.js");
 
-export const register = async (req, res, next) => {
+
+const register = async (req, res, next) => {
     try {
         const salt = bcrypt.genSaltSync(10);
         const hash = bcrypt.hashSync(req.body.password, salt)
-        const newUser = new User({
+        const newUser = new User.UserSchema({
             username: req.body.username,
             email: req.body.email,
             password: hash
@@ -20,9 +21,9 @@ export const register = async (req, res, next) => {
     }
 }
 
-export const login = async (req, res, next) => {
+const login = async (req, res, next) => {
     try {
-        const user = await User.findOne({username: req.body.username})
+        const user = await User.UserSchema.findOne({username: req.body.username})
         if (!user) return next(createError(404, "User not found!"))
         const isPasswordCorrect = await bcrypt.compare(req.body.password, user.password)
         if (!isPasswordCorrect) return next(createError(400, "Wrong password or username!"))
@@ -40,9 +41,9 @@ export const login = async (req, res, next) => {
     }
 }
 
-export const updateUser = async (req, res, next) => {
+const updateUser = async (req, res, next) => {
     try {
-        const updatedUser = await User.findByIdAndUpdate(req.params.id,
+        const updatedUser = await User.UserSchema.findByIdAndUpdate(req.params.id,
             {$set: req.body},
             {new: true}
         )
@@ -51,29 +52,31 @@ export const updateUser = async (req, res, next) => {
         next(err)
     }
 }
-export const deleteUser = async (req, res, next) => {
+const deleteUser = async (req, res, next) => {
     try {
-        await User.findByIdAndDelete(req.params.id)
+        await User.UserSchema.findByIdAndDelete(req.params.id)
         res.status(200).json(`${req.params.id} was deleted`)
     } catch (err) {
         next(err)
     }
 }
 
-export const getUser = async (req, res, next) => {
+const getUser = async (req, res, next) => {
     try {
-        const getUser = await User.findById(req.params.id,)
+        const getUser = await User.UserSchema.findById(req.params.id,)
         res.status(200).json(getUser)
     } catch (err) {
         next(err)
     }
 }
 
-export const getUsers = async (req, res, next) => {
+const getUsers = async (req, res, next) => {
     try {
-        const getUsers = await Sections.find()
+        const getUsers = await Sections.SectionsSchema.find()
         res.status(200).json(getUsers)
     } catch (err) {
         next(err)
     }
 }
+
+module.exports = {getUsers, getUser, deleteUser, updateUser, login, register}
